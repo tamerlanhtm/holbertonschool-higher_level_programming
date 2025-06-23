@@ -10,12 +10,16 @@ if __name__ == '__main__':
         password=argv[2],
         database=argv[3]
     )
+
     cursor = db.cursor()
 
-    cursor.execute('SELECT * FROM states')
+    cursor.execute("SELECT * \
+                    FROM `states` \
+                    ORDER BY id")
 
     for state in cursor.fetchall():
-        print(state)
+        if state[1] == argv[4]:
+            print(state)
 
     if cursor:
         cursor.close()
